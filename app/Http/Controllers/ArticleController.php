@@ -239,8 +239,8 @@ class ArticleController extends Controller
         $update['articles_address_en'] = $request->articles_address_en;
         $update['articles_subject_ar2'] = $ar2;
         $update['articles_subject_en2'] = $en2;
-       // $update['articles_keyword']=$request->articles_keyword;
-        //$update['articles_desc']=$request->articles_desc;
+        $update['articles_keyword']=$request->articles_keyword;
+        $update['articles_desc']=$request->articles_desc;
         //$work_time
 
         Article::where('id', $id)->update(
