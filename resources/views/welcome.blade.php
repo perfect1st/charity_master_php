@@ -130,7 +130,7 @@
                         @foreach ($popularCasesDepImages as $item)
                         <div class="single_cause">
                             <div class="thumb">
-                                <img src="{{asset(asset('articles/' . $item->articles_image))}}" alt>
+                                <img src="{{asset('articles/' . $item->articles_image)}}" alt>
                             </div>
                             <div class="causes_content">
                                 <div class="custom_progress_bar">
@@ -373,7 +373,7 @@
                         @foreach ($news as $item)
                         <div class="single__blog d-flex align-items-center right">
                             <div class="thum">
-                                <img src="img/news/1.png" alt>
+                                <img src="{{asset('articles/' . $item->articles_image)}}" alt>
                             </div>
                             <div class="newsinfo">
                                 <span>July 18, 2019</span>
