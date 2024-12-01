@@ -143,7 +143,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="balance d-flex justify-content-between align-items-center">
+                                <div class="balance d-flex justify-content-between align-items-center right">
                                     <span>
                                     {{ app()->getLocale() == 'ar' ? $item->articles_address_ar   : $item->articles_address_en }}
                                      </span>
@@ -153,7 +153,7 @@
                                     {{ app()->getLocale() == 'ar' ? $item->articles_title_ar : $item->articles_title_en}}
                                 </h4>
                                 <p>
-                                    {{ app()->getLocale() == 'ar' ? $item->articles_subject_ar : $item->articles_subject_en}}
+                                    {{ app()->getLocale() == 'ar' ? Str::limit($item->articles_subject_ar, 40)  : Str::limit($item->articles_subject_en, 40)}}
                                 </p>
                                 <a class="read_more" href="cause_details.html"> 
                                     {{ app()->getLocale() == 'ar' ? "المزيد" : "more"}}
@@ -360,7 +360,8 @@
                     <div class="section_title text-center mb-55">
                         <h3>
                             <span>
-                                الأخبار والتحديثات
+                                {{ app()->getLocale() == 'ar' ? $newsDep->department_title_ar :
+                                $newsDep->department_title_en }}
                             </span>
                         </h3>
                     </div>
@@ -369,33 +370,35 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="news_active owl-carousel">
-                        <div class="single__blog d-flex align-items-center">
+                        @foreach ($news as $item)
+                        <div class="single__blog d-flex align-items-center right">
                             <div class="thum">
                                 <img src="img/news/1.png" alt>
                             </div>
                             <div class="newsinfo">
                                 <span>July 18, 2019</span>
                                 <a href="single-blog.html">
-                                    <h3>Pure Water Is More
-                                        Essential</h3>
+                                    <h3> تعليم الاطفال الافارقة </h3>
                                 </a>
-                                <p>The passage experienced a
-                                    surge in popularity during the
-                                    1960s when used it on their
-                                    sheets, and again.</p>
-                                <a class="read_more" href="single-blog.html">Read
-                                    More</a>
+                                <p>
+                                    الفقرة تُنسب إلى معد الطباعة المجهول
+                                            في القرن الذي يُعتقد أنه...
+                                </p>
+                                <a class="read_more" href="single-blog.html">
+                                    {{ app()->getLocale() == 'ar' ? "المزيد" : "more"}}
+                                </a>
                             </div>
                         </div>
-                        <div class="single__blog d-flex align-items-center">
+                        @endforeach
+
+                        {{-- <div class="single__blog d-flex align-items-center right">
                             <div class="thum">
                                 <img src="img/news/2.png" alt>
                             </div>
                             <div class="newsinfo">
                                 <span>July 18, 2019</span>
                                 <a href="single-blog.html">
-                                    <h3>Pure Water Is More
-                                        Essential</h3>
+                                    <h3>Pure Water Is More Essential</h3>
                                 </a>
                                 <p>The passage experienced a
                                     surge in popularity during the
@@ -404,7 +407,7 @@
                                 <a class="read_more" href="single-blog.html">Read
                                     More</a>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
