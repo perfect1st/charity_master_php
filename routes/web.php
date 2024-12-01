@@ -62,6 +62,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         $popularCasesDep = Department::find(5);
         $popularCasesDepImages= Department::find(5)->articles->where('articles_isactive', 'active');
 
+        $counter= Department::find(6)->articles->where('articles_isactive', 'active');
+
 
         return view('welcome',[
             "banner"=>$banner,
@@ -69,7 +71,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             "helpDepImages"=>$helpDepImages,
             "lastActivities"=>$lastActivities,
             "popularCasesDep"=>$popularCasesDep,
-            "popularCasesDepImages"=>$popularCasesDepImages
+            "popularCasesDepImages"=>$popularCasesDepImages,
+            "counter"=>$counter
             ]);
       
     });

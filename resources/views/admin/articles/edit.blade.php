@@ -1,9 +1,6 @@
 @extends('layouts.app1')
 @section('content')
-@if ($dep->id==6)
 
-  <livewire:edit-doctors  :sliderId='$sliderId' :article='$article'>
- @else
  <div class="container">
     @if (App::getLocale() == 'ar')
         <div class="parent" style="display: flex" dir="rtl">
@@ -144,7 +141,6 @@
     </div>
 
 </div>   
-@endif
     
   
     <script>

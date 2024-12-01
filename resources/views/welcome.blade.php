@@ -174,18 +174,29 @@
         <div class="container">
             <div class="counter_bg overlay">
                 <div class="row">
+
+                    @foreach ($counter as $item)
+
                     <div class="col-lg-3 col-md-6">
                         <div class="single_counter d-flex align-items-center justify-content-center">
                             <div class="icon">
                                 <i class="flaticon-calendar"></i>
                             </div>
                             <div class="events">
-                                <h3 class="counter">120</h3>
-                                <p>الحدث المنتهي</p>
+                                <h3 class="counter">
+                                    {{ app()->getLocale() == 'ar' ? $item->articles_address_ar : $item->articles_address_ar}}
+                                </h3>
+                                <p>
+                                    {{ app()->getLocale() == 'ar' ? $item->articles_title_ar : $item->articles_title_en}}
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
+
+                    @endforeach
+                    
+
+                    {{-- <div class="col-lg-3 col-md-6">
                         <div class="single_counter d-flex align-items-center justify-content-center">
                             <div class="icon">
                                 <i class="flaticon-heart-beat"></i>
@@ -196,6 +207,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-lg-3 col-md-6">
                         <div class="single_counter d-flex align-items-center justify-content-center">
                             <div class="icon">
@@ -207,6 +219,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-lg-3 col-md-6">
                         <div class="single_counter d-flex align-items-center justify-content-center">
                             <div class="icon">
@@ -217,7 +230,7 @@
                                 <p>الحدث المنتهي</p>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -225,7 +238,7 @@
     <!-- counter_area_end  -->
 
     <!-- our_volunteer_area_start  -->
-    <div class="our_volunteer_area section_padding">
+    {{-- <div class="our_volunteer_area section_padding">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
@@ -336,7 +349,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- our_volunteer_area_end  -->
 
     <!-- news__area_start  -->
