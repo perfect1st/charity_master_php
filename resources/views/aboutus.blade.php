@@ -1,0 +1,259 @@
+@extends('layouts.app')
+@section('content')
+
+<!-- bradcam_area_start  -->
+<div class="bradcam_area breadcam_bg overlay d-flex align-items-center justify-content-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text text-center">
+                    <h3>
+                        {{app()->getLocale() == 'ar' ? 'نبذة عنا' : 'about us'}}
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- bradcam_area_end  -->
+
+<!-- reson_area_start  -->
+<div class="reson_area section_padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="section_title text-center mb-55">
+                    <h3>
+                        <span>
+
+                            {{ app()->getLocale() == 'ar' ? $helpDep->department_title_ar :
+                            $helpDep->department_title_en }}
+
+                        </span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            @foreach ($helpDepImages as $item)
+            <div class="col-lg-4 col-md-6">
+                <div class="single_reson">
+                    <div class="thum">
+                        <div class="thum_1">
+                            <img src="{{asset('articles/' . $item->articles_image)}}" alt="">
+                        </div>
+                    </div>
+                    <div class="help_content">
+                        <h4>
+                            {{ app()->getLocale() == 'ar' ? $item->articles_title_ar : $item->articles_title_en}}
+                        </h4>
+                        <p>
+                            {{ app()->getLocale() == 'ar' ? $item->articles_subject_ar : $item->articles_subject_en}}
+                        </p>
+                        <a href="#" class="read_more">
+                            {{ app()->getLocale() == 'ar' ? "المزيد" : "more"}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+
+        </div>
+    </div>
+</div>
+<!-- reson_area_end  -->
+
+<!-- latest_activites_area_start  -->
+<div class="latest_activites_area">
+    <div class="video_bg_1 video_activite  d-flex align-items-center justify-content-center"
+        style="background-image: url({{asset(asset('articles/' . $lastActivities->articles_image))}});">
+        <a class="popup-video" href="{{$lastActivities->articles_address_ar}}">
+            <i class="flaticon-ui"></i>
+        </a>
+    </div>
+    <div class="container">
+        <div class="row justify-content-end">
+            <div class="col-lg-7">
+                <div class="activites_info">
+                    <div class="section_title">
+                        <h3> <span>
+                                {{ app()->getLocale() == 'ar' ? $lastActivities->articles_title_ar :
+                                $lastActivities->articles_title_en}}
+                            </span>
+                            <br>
+                        </h3>
+                    </div>
+                    <p class="para_1">
+                        @if (app()->getLocale() == 'ar')
+                        {!! $lastActivities->articles_subject_ar !!}
+                        @else
+                        {!! $lastActivities->articles_subject_en !!}
+                        @endif
+
+                    </p class="para_1">
+
+                    <a href="#" data-scroll-nav='1' class="boxed-btn4">
+                        {{app()->getLocale() == 'ar' ? "تبرع الان" : "Donate now"}}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- latest_activites_area_end  -->
+
+<!-- counter_area_start  -->
+<div class="counter_area pt-120">
+    <div class="container">
+        <div class="counter_bg overlay" style="background-image: url({{asset('/img/banner/counter_bg.png')}});">
+            <div class="row">
+
+                @foreach ($counter as $item)
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="single_counter d-flex align-items-center justify-content-center">
+                        <div class="icon">
+                            <i class="flaticon-calendar"></i>
+                        </div>
+                        <div class="events">
+                            <h3 class="counter">
+                                {{ app()->getLocale() == 'ar' ? $item->articles_address_ar :
+                                $item->articles_address_ar}}
+                            </h3>
+                            <p>
+                                {{ app()->getLocale() == 'ar' ? $item->articles_title_ar : $item->articles_title_en}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                @endforeach
+
+
+
+                <!-- our_volunteer_area_end  -->
+
+               
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+ <!-- news__area_start  -->
+ <div class="news__area section_padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="section_title text-center mb-55">
+                    <h3>
+                        <span>
+                            {{ app()->getLocale() == 'ar' ? $newsDep->department_title_ar :
+                            $newsDep->department_title_en }}
+                        </span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="news_active owl-carousel">
+                    @foreach ($news as $item)
+                    <div class="single__blog d-flex align-items-center right">
+                        <div class="thum">
+                            <img src="{{asset('articles/' . $item->articles_image)}}" alt>
+                        </div>
+                        <div class="newsinfo">
+                            <span>July 18, 2019</span>
+                            <a href="single-blog.html">
+                                <h3> تعليم الاطفال الافارقة </h3>
+                            </a>
+                            <p>
+                                الفقرة تُنسب إلى معد الطباعة المجهول
+                                في القرن الذي يُعتقد أنه...
+                            </p>
+                            <a class="read_more" href="single-blog.html">
+                                {{ app()->getLocale() == 'ar' ? "المزيد" : "more"}}
+                            </a>
+                        </div>
+                    </div>
+                    @endforeach
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- news__area_end  -->
+
+<div data-scroll-index='1' class="make_donation_area section_padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="section_title text-center mb-55">
+                    <h3><span> تبرع الان </span></h3>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <form action="#" class="donation_form">
+                    <div class="row align-items-center">
+                        <div class="col-md-4">
+                            <div class="single_amount">
+                                <div class="input_field">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">$</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="40,200"
+                                            aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="single_amount">
+                                <div
+                                    class="fixed_donat d-flex align-items-center justify-content-between">
+                                    <div class="select_prise">
+                                        <h4>
+                                            : المبلغ
+                                        </h4>
+                                    </div>
+                                    <div class="single_doonate">
+                                        <input type="radio" id="blns_1" name="radio-group" checked>
+                                        <label for="blns_1">10</label>
+                                    </div>
+                                    <div class="single_doonate">
+                                        <input type="radio" id="blns_2" name="radio-group" checked>
+                                        <label for="blns_2">30</label>
+                                    </div>
+                                    <div class="single_doonate">
+                                        <input type="radio" id="Other" name="radio-group" checked>
+                                        <label for="Other"> مبلغ اخر</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="donate_now_btn text-center">
+                    <a href="#" class="boxed-btn4">تبرع الان</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+ 
+
+
+@endsection

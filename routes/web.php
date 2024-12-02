@@ -67,6 +67,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         $newsDep = Department::find(7);
         $news=Department::find(7)->articles->where('articles_isactive', 'active');
 
+        $setting = Setting::find(1);
+        $settingArticle= Article::find(14);
+
+
         return view('welcome',[
             "banner"=>$banner,
             "helpDep"=>$helpDep,
@@ -76,39 +80,50 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             "popularCasesDepImages"=>$popularCasesDepImages,
             "counter"=>$counter,
             "newsDep"=>$newsDep,
-            "news"=>$news
+            "news"=>$news,
+            "setting"=>$setting,
+            "settingArticle"=>$settingArticle
             ]);
       
     });
 
-    Route::get('/gallery', function () {
-       // $service = Article::find($id);
-        $setting = Setting::find(1);
-        $galleryDep = Department::find(4);
-        $gallery= Department::find(4)->articles->where('articles_isactive', 'active')->take(6);
-        $flag='gallery';
-
-        return view('gallery', [
-          
-            "galleryDep"=>$galleryDep,
-            "gallery"=>$gallery,
-            "setting" => $setting,
-            "flag"=>$flag
-        ]);
-    });
+   
 
     //serviceDetails
     Route::get('/aboutus', function () {
-        //$service=Article::find($id);
+       
         $setting = Setting::find(1);
-        $flag='aboutus';
-        $aboutUs = Department::find(2)->articles->where('articles_isactive', 'active');
+        $settingArticle= Article::find(14);
 
+        $helpDep = Department::find(2);
+        $helpDepImages= Department::find(2)->articles->where('articles_isactive', 'active');
+
+        $popularCasesDep = Department::find(5);
+        $popularCasesDepImages= Department::find(5)->articles->where('articles_isactive', 'active');
+        $lastActivities= Article::find(5);
+
+        $popularCasesDep = Department::find(5);
+        $popularCasesDepImages= Department::find(5)->articles->where('articles_isactive', 'active');
+
+        $counter= Department::find(6)->articles->where('articles_isactive', 'active');
+
+        $newsDep = Department::find(7);
+        $news=Department::find(7)->articles->where('articles_isactive', 'active');
+
+       // return 'xxxxxxxxxxxx';
 
         return view('aboutus', [
-            "flag"=>$flag,
-            "aboutUs"=>$aboutUs,
-            "setting" => $setting
+            "settingArticle"=>$settingArticle,
+            //"aboutUs"=>$aboutUs,
+            "setting" => $setting,
+            "helpDep"=>$helpDep,
+            "helpDepImages"=>$helpDepImages,
+            "popularCasesDep"=>$popularCasesDep,
+            "popularCasesDepImages"=>$popularCasesDepImages,
+            "lastActivities"=>$lastActivities,
+            "counter"=>$counter,
+            "newsDep"=>$newsDep,
+            "news"=>$news
         ]);
     });
 

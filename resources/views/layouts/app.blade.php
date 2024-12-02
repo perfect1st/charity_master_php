@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>
-        الأعمال الخيرية
+        {{ app()->getLocale() == 'ar' ? $setting->setting_title_ar : $setting->setting_title_en }}
     </title>
     <meta name="description" content>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -69,23 +69,25 @@
                             <div class="short_contact_list">
                                 <ul>
                                     <li><a href="#"> <i class="fa fa-phone"></i> +1
-                                            (454) 556-5656</a></li>
-                                    <li><a href="#"> <i class="fa fa-envelope"></i>Yourmail@gmail.com</a></li>
+                                            {{$setting->setting_sitetell1}}</a></li>
+                                    <li><a href="#"> <i class="fa fa-envelope"></i>
+                                        {{$setting->setting_site_email}}
+                                    </a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-xl-6 col-md-6 col-lg-4">
                             <div class="social_media_links d-none d-lg-block">
-                                <a href="#">
+                                <a href="{{$setting->setting_facebookurl}}">
                                     <i class="fa fa-facebook"></i>
                                 </a>
-                                <a href="#">
+                                {{-- <a href="#">
                                     <i class="fa fa-pinterest-p"></i>
-                                </a>
-                                <a href="#">
+                                </a> --}}
+                                <a href="{{$setting->setting_linkedinurl}}">
                                     <i class="fa fa-linkedin"></i>
                                 </a>
-                                <a href="#">
+                                <a href="{{$setting->setting_twitterurl}}">
                                     <i class="fa fa-twitter"></i>
                                 </a>
                             </div>
@@ -110,7 +112,7 @@
                                         <li><a href="index.html">
                                             {{app()->getLocale() == 'ar' ? 'الرئيسية' : 'home'}} 
                                             </a></li>
-                                        <li><a href="About.html"> 
+                                        <li><a href="{{ LaravelLocalization::localizeUrl('/aboutus') }}"> 
                                             {{app()->getLocale() == 'ar' ? 'نبذة عنا' : 'about us'}}
                                             </a></li>
                                         <li><a href="#">
@@ -183,33 +185,31 @@
                         <div class="footer_widget">
                             <div class="footer_logo">
                                 <a href="#">
-                                    <img src="img/footer_logo.png" alt>
+                                    <img src="{{asset('img/footer_logo.png')}}" alt>
                                 </a>
                             </div>
                             <p class="address_text">
-                                لوريم إيبسوم دولور سيت أميت،
-                                كونسيكتتور أديبيسيسينغ إيليت، سيد دو
-                                إيوسمد تيمبور إنسيديدنت يوت لابوري.
+                              {{ app()->getLocale() == 'ar' ? $settingArticle->articles_subject_ar : $settingArticle->articles_subject_en }}
                             </p>
                             <div class="socail_links">
                                 <ul>
                                     <li>
-                                        <a href="#">
+                                        <a href="{{$setting->setting_facebookurl}}">
                                             <i class="ti-facebook"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="{{$setting->setting_twitterurl}}">
                                             <i class="ti-twitter-alt"></i>
                                         </a>
                                     </li>
-                                    <li>
+                                    {{-- <li>
                                         <a href="#">
                                             <i class="fa fa-dribbble"></i>
                                         </a>
-                                    </li>
+                                    </li> --}}
                                     <li>
-                                        <a href="#">
+                                        <a href="{{$setting->setting_instgramurl}}">
                                             <i class="fa fa-instagram"></i>
                                         </a>
                                     </li>
@@ -239,8 +239,8 @@
                                 التواصل
                             </h3>
                             <div class="contacts">
-                                <p>+2(305) 587-3407 <br>
-                                    info@loveuscharity.com <br>
+                                <p> {{$setting->setting_sitetell1}} <br>
+                                    {{$setting->setting_site_email}} <br>
                                     السعودية - الرياض
                                 </p>
                             </div>

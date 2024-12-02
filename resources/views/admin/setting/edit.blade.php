@@ -85,11 +85,11 @@
                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                     name="setting_twitterurl" value="{{$setting->setting_twitterurl}}">
                 </div>
-                {{-- <div class="form-group" style="margin-top: 10px">
+                <div class="form-group" style="margin-top: 10px">
                     <label for="exampleInputEmail1">حساب انستجرام</label>
                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                     name="setting_instgramurl" value="{{$setting->setting_instgramurl}}">
-                </div> --}}
+                </div>
                 <div class="form-group" style="margin-top: 10px">
                     <label for="exampleInputEmail1"> حساب لينكد ان</label>
                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
@@ -106,7 +106,7 @@
                 
                 <div class="form-group" style="margin-top: 10px">
                     <label for="exampleInputEmail1">رقم الجوال</label>
-                    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    <input  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                     name="setting_sitetell1" value="{{$setting->setting_sitetell1}}">
                 </div>
 
