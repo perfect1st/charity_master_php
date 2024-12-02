@@ -70,6 +70,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         $setting = Setting::find(1);
         $settingArticle= Article::find(14);
 
+        $newsbutton=Department::find(7)->articles->where('articles_isactive', 'active')->take(2);
 
         return view('welcome',[
             "banner"=>$banner,
@@ -82,7 +83,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             "newsDep"=>$newsDep,
             "news"=>$news,
             "setting"=>$setting,
-            "settingArticle"=>$settingArticle
+            "settingArticle"=>$settingArticle,
+            "newsbutton"=>$newsbutton
             ]);
       
     });
@@ -110,6 +112,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         $newsDep = Department::find(7);
         $news=Department::find(7)->articles->where('articles_isactive', 'active');
 
+        $newsbutton=Department::find(7)->articles->where('articles_isactive', 'active')->take(2);
+
        // return 'xxxxxxxxxxxx';
 
         return view('aboutus', [
@@ -123,7 +127,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             "lastActivities"=>$lastActivities,
             "counter"=>$counter,
             "newsDep"=>$newsDep,
-            "news"=>$news
+            "news"=>$news,
+            "newsbutton"=>$newsbutton
         ]);
     });
 

@@ -35,17 +35,17 @@
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 
     @else
-     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/themify-icons.css">
-    <link rel="stylesheet" href="css/nice-select.css">
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/gijgo.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/slicknav.css">
-    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="{{asset("css/bootstrap.min.css")}}">
+    <link rel="stylesheet" href="{{asset("css/owl.carousel.min.css")}}">
+    <link rel="stylesheet" href="{{asset("css/magnific-popup.css")}}">
+    <link rel="stylesheet" href="{{asset("css/font-awesome.min.css")}}">
+    <link rel="stylesheet" href="{{asset("css/themify-icons.css")}}">
+    <link rel="stylesheet" href="{{asset("css/nice-select.css")}}">
+    <link rel="stylesheet" href="{{asset("css/flaticon.css")}}">
+    <link rel="stylesheet" href="{{asset("css/gijgo.css")}}">
+    <link rel="stylesheet" href="{{asset("css/animate.css")}}">
+    <link rel="stylesheet" href="{{asset("css/slicknav.css")}}">
+    <link rel="stylesheet" href="{{asset("css/style.css")}}">
 
     @endif
 
@@ -100,7 +100,7 @@
                     <div class="row align-items-center">
                         <div class="col-xl-3 col-lg-3">
                             <div class="logo">
-                                <a href="index.html">
+                                <a href="{{ LaravelLocalization::localizeUrl('/') }}">
                                     <img src="{{asset('img/logo.png')}}" alt>
                                 </a>
                             </div>
@@ -109,7 +109,7 @@
                             <div class="main-menu">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.html">
+                                        <li><a href="{{ LaravelLocalization::localizeUrl('/') }}">
                                             {{app()->getLocale() == 'ar' ? 'الرئيسية' : 'home'}} 
                                             </a></li>
                                         <li><a href="{{ LaravelLocalization::localizeUrl('/aboutus') }}"> 
@@ -184,7 +184,7 @@
                     <div class="col-xl-4 col-md-6 col-lg-4 ">
                         <div class="footer_widget">
                             <div class="footer_logo">
-                                <a href="#">
+                                <a href="{{ LaravelLocalization::localizeUrl('/') }}">
                                     <img src="{{asset('img/footer_logo.png')}}" alt>
                                 </a>
                             </div>
@@ -221,7 +221,7 @@
                     <div class="col-xl-2 col-md-6 col-lg-2">
                         <div class="footer_widget">
                             <h3 class="footer_title">
-                                الخدمات
+                                {{app()->getLocale() == 'ar' ? 'الخدمات' : 'Services'}}  
                             </h3>
                             <ul class="links">
                                 <li><a href="#">التبرع</a></li>
@@ -236,12 +236,16 @@
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget">
                             <h3 class="footer_title">
-                                التواصل
+                              {{app()->getLocale() == 'ar' ? 'التواصل' : 'Contact Us'}}  
                             </h3>
                             <div class="contacts">
                                 <p> {{$setting->setting_sitetell1}} <br>
                                     {{$setting->setting_site_email}} <br>
-                                    السعودية - الرياض
+                                    {{
+                                        app()->getLocale() == 'ar' ? $setting->setting_site_address_ar 
+                                        :
+                                        $setting->setting_site_address_en
+                                    }}
                                 </p>
                             </div>
                         </div>
@@ -249,35 +253,44 @@
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget">
                             <h3 class="footer_title">
-                                اخر الاخبار
+                              {{
+                                app()->getLocale() == 'ar' ? 'اخر الاخبار' : 'latest news'
+                              }}  
                             </h3>
                             <ul class="news_links">
+
                                 <li>
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/news/news_1.png" alt>
+                                            <img src="{{asset('articles/' . $newsbutton[0]->articles_image)}}" alt>
                                         </a>
                                     </div>
                                     <div class="info">
                                         <a href="#">
                                             <h4>
-                                                مدرسة للأطفال الأفارقة
+                                                {{ app()->getLocale() == 'ar' ? $newsbutton[0]->articles_title_ar : $newsbutton[0]->articles_title_en}}
                                             </h4>
                                         </a>
-                                        <span>Jun 12, 2019</span>
+                                        <span>
+                                            {{ app()->getLocale() == 'ar' ?$newsbutton[0]->articles_address_ar :$newsbutton[0]->articles_address_en}}
+                                        </span>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="img/news/news_2.png" alt>
+                                            <img src="{{asset('articles/' . $newsbutton[1]->articles_image)}}" alt>
                                         </a>
                                     </div>
                                     <div class="info">
                                         <a href="#">
-                                            <h4>مدرسة للأطفال الأفارقة</h4>
+                                            <h4>
+                                                {{ app()->getLocale() == 'ar' ? $newsbutton[1]->articles_title_ar : $newsbutton[1]->articles_title_en}}
+                                            </h4>
                                         </a>
-                                        <span>Jun 12, 2019</span>
+                                        <span>
+                                            {{ app()->getLocale() == 'ar' ?$newsbutton[1]->articles_address_ar :$newsbutton[1]->articles_address_en}}
+                                        </span>
                                     </div>
                                 </li>
                             </ul>
@@ -294,9 +307,13 @@
                         <p class="copy_right text-center">
                         <p class="text-center">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            حقوق الطبع والنشر © <script>
+                            {{app()->getLocale() == 'ar' ? "حقوق الطبع والنشر ©" : "copyright ©"}}
+                              
+                            <script>
                                 document.write(new Date().getFullYear());
-                            </script> جميع الحقوق محفوظة
+                            </script>
+                            {{app()->getLocale() == 'ar' ? 'جميع الحقوق محفوظة' : 'All Rigths Reserved'}} 
+                             
                             <!-- &copy;<script>document.write(new Date().getFullYear());</script>
                                         All rights reserved -->
                             </a>

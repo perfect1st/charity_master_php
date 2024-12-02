@@ -165,13 +165,16 @@
                             <img src="{{asset('articles/' . $item->articles_image)}}" alt>
                         </div>
                         <div class="newsinfo">
-                            <span>July 18, 2019</span>
+                            <span>
+                                {{ app()->getLocale() == 'ar' ? $item->articles_address_ar : $item->articles_address_en}}
+                            </span>
                             <a href="single-blog.html">
-                                <h3> تعليم الاطفال الافارقة </h3>
+                                <h3>
+                                    {{ app()->getLocale() == 'ar' ? $item->articles_title_ar : $item->articles_title_en}}  
+                                </h3>
                             </a>
                             <p>
-                                الفقرة تُنسب إلى معد الطباعة المجهول
-                                في القرن الذي يُعتقد أنه...
+                                {{ app()->getLocale() == 'ar' ? $item->articles_subject_ar : $item->articles_subject_en}}
                             </p>
                             <a class="read_more" href="single-blog.html">
                                 {{ app()->getLocale() == 'ar' ? "المزيد" : "more"}}
@@ -193,7 +196,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <div class="section_title text-center mb-55">
-                    <h3><span> تبرع الان </span></h3>
+                    <h3><span> {{app()->getLocale() == 'ar' ? "تبرع الان" : "Donate now"}} </span></h3>
                 </div>
             </div>
         </div>
@@ -220,7 +223,7 @@
                                     class="fixed_donat d-flex align-items-center justify-content-between">
                                     <div class="select_prise">
                                         <h4>
-                                            : المبلغ
+                                            {{app()->getLocale() == 'ar' ? "المبلغ :" : "amount :"}}    
                                         </h4>
                                     </div>
                                     <div class="single_doonate">
@@ -233,7 +236,9 @@
                                     </div>
                                     <div class="single_doonate">
                                         <input type="radio" id="Other" name="radio-group" checked>
-                                        <label for="Other"> مبلغ اخر</label>
+                                        <label for="Other">
+                                            {{app()->getLocale() == 'ar' ? "مبلغ اخر :" : "another"}}
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -245,7 +250,9 @@
         <div class="row">
             <div class="col-12">
                 <div class="donate_now_btn text-center">
-                    <a href="#" class="boxed-btn4">تبرع الان</a>
+                    <a href="#" class="boxed-btn4">
+                        {{app()->getLocale() == 'ar' ? "تبرع الان" : "Donate now"}}
+                    </a>
                 </div>
             </div>
 
