@@ -38,7 +38,7 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
           // Set the locale to Arabic
-          LaravelLocalization::setLocale('ar');
+         // LaravelLocalization::setLocale('ar');
         $this->redirectTo = LaravelLocalization::localizeUrl(route('home'));
     }
 

@@ -15,7 +15,7 @@
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
-    
+
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 
     @if (app()->getLocale() == 'ar')
@@ -71,8 +71,8 @@
                                     <li><a href="#"> <i class="fa fa-phone"></i> +1
                                             {{$setting->setting_sitetell1}}</a></li>
                                     <li><a href="#"> <i class="fa fa-envelope"></i>
-                                        {{$setting->setting_site_email}}
-                                    </a></li>
+                                            {{$setting->setting_site_email}}
+                                        </a></li>
                                 </ul>
                             </div>
                         </div>
@@ -110,14 +110,14 @@
                                 <nav>
                                     <ul id="navigation">
                                         <li><a href="{{ LaravelLocalization::localizeUrl('/') }}">
-                                            {{app()->getLocale() == 'ar' ? 'الرئيسية' : 'home'}} 
+                                                {{app()->getLocale() == 'ar' ? 'الرئيسية' : 'home'}}
                                             </a></li>
-                                        <li><a href="{{ LaravelLocalization::localizeUrl('/aboutus') }}"> 
-                                            {{app()->getLocale() == 'ar' ? 'نبذة عنا' : 'about us'}}
+                                        <li><a href="{{ LaravelLocalization::localizeUrl('/aboutus') }}">
+                                                {{app()->getLocale() == 'ar' ? 'نبذة عنا' : 'about us'}}
                                             </a></li>
                                         <li><a href="#">
-                                             {{ app()->getLocale() == 'ar' ? 'مقالات' : 'articles'}}
-                                        <i class="ti-angle-down"></i></a>
+                                                {{ app()->getLocale() == 'ar' ? 'مقالات' : 'articles'}}
+                                                <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="blog.html">blog</a></li>
                                                 <li><a href="single-blog.html">single-blog</a></li>
@@ -130,14 +130,46 @@
                                             </ul>
                                         </li>
                                         <li><a href="contact.html">
-                                             {{app()->getLocale() == 'ar' ? "تواصل معنا" :" contact us"}}
-                                                </a></li>
+                                                {{app()->getLocale() == 'ar' ? "تواصل معنا" :" contact us"}}
+                                            </a></li>
+
+                                            @auth
+                                            <a href="{{ url('/dashboard') }}" class="btn btn-primary me-2">Go to Dashboard</a>
+                                            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger">Logout</button>
+                                            </form>
+                                            @else
+
+                                            <li><a href="{{ route('login') }}">
+                                                {{app()->getLocale() == 'ar' ? "تسجيل الدخول" : "Login"}} </a>
+
+                                            </a></li>
+
+                                            <li><a href="{{ route('register') }}">
+                                                {{app()->getLocale() == 'ar' ? "انشاء حساب" : "Register"}}     
+                                            </a>
+
+                                            </a></li>
+        
+                                            
+        
+                                            {{-- <div class="book_btn d-none d-lg-block">
+                                                <a data-scroll-nav='1' href="{{ route('register') }}">
+                                                    {{app()->getLocale() == 'ar' ? "انشاء حساب" : "Register"}} </a>
+                                            </div> --}}
+        
+                                            @endauth
+        
                                     </ul>
                                 </nav>
                                 <div class="Appointment">
+
+                                    
+                                   
                                     <div class="book_btn d-none d-lg-block">
                                         <a data-scroll-nav='1' href="#">
-                                         {{app()->getLocale() == 'ar' ? "تبرع الان" : "Donate now"}}    </a>
+                                            {{app()->getLocale() == 'ar' ? "تبرع الان" : "Donate now"}} </a>
                                     </div>
                                 </div>
                             </div>
@@ -189,7 +221,8 @@
                                 </a>
                             </div>
                             <p class="address_text">
-                              {{ app()->getLocale() == 'ar' ? $settingArticle->articles_subject_ar : $settingArticle->articles_subject_en }}
+                                {{ app()->getLocale() == 'ar' ? $settingArticle->articles_subject_ar :
+                                $settingArticle->articles_subject_en }}
                             </p>
                             <div class="socail_links">
                                 <ul>
@@ -221,7 +254,7 @@
                     <div class="col-xl-2 col-md-6 col-lg-2">
                         <div class="footer_widget">
                             <h3 class="footer_title">
-                                {{app()->getLocale() == 'ar' ? 'الخدمات' : 'Services'}}  
+                                {{app()->getLocale() == 'ar' ? 'الخدمات' : 'Services'}}
                             </h3>
                             <ul class="links">
                                 <li><a href="#">التبرع</a></li>
@@ -236,15 +269,15 @@
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget">
                             <h3 class="footer_title">
-                              {{app()->getLocale() == 'ar' ? 'التواصل' : 'Contact Us'}}  
+                                {{app()->getLocale() == 'ar' ? 'التواصل' : 'Contact Us'}}
                             </h3>
                             <div class="contacts">
                                 <p> {{$setting->setting_sitetell1}} <br>
                                     {{$setting->setting_site_email}} <br>
                                     {{
-                                        app()->getLocale() == 'ar' ? $setting->setting_site_address_ar 
-                                        :
-                                        $setting->setting_site_address_en
+                                    app()->getLocale() == 'ar' ? $setting->setting_site_address_ar
+                                    :
+                                    $setting->setting_site_address_en
                                     }}
                                 </p>
                             </div>
@@ -253,9 +286,9 @@
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget">
                             <h3 class="footer_title">
-                              {{
+                                {{
                                 app()->getLocale() == 'ar' ? 'اخر الاخبار' : 'latest news'
-                              }}  
+                                }}
                             </h3>
                             <ul class="news_links">
 
@@ -268,11 +301,13 @@
                                     <div class="info">
                                         <a href="#">
                                             <h4>
-                                                {{ app()->getLocale() == 'ar' ? $newsbutton[0]->articles_title_ar : $newsbutton[0]->articles_title_en}}
+                                                {{ app()->getLocale() == 'ar' ? $newsbutton[0]->articles_title_ar :
+                                                $newsbutton[0]->articles_title_en}}
                                             </h4>
                                         </a>
                                         <span>
-                                            {{ app()->getLocale() == 'ar' ?$newsbutton[0]->articles_address_ar :$newsbutton[0]->articles_address_en}}
+                                            {{ app()->getLocale() == 'ar' ?$newsbutton[0]->articles_address_ar
+                                            :$newsbutton[0]->articles_address_en}}
                                         </span>
                                     </div>
                                 </li>
@@ -285,11 +320,13 @@
                                     <div class="info">
                                         <a href="#">
                                             <h4>
-                                                {{ app()->getLocale() == 'ar' ? $newsbutton[1]->articles_title_ar : $newsbutton[1]->articles_title_en}}
+                                                {{ app()->getLocale() == 'ar' ? $newsbutton[1]->articles_title_ar :
+                                                $newsbutton[1]->articles_title_en}}
                                             </h4>
                                         </a>
                                         <span>
-                                            {{ app()->getLocale() == 'ar' ?$newsbutton[1]->articles_address_ar :$newsbutton[1]->articles_address_en}}
+                                            {{ app()->getLocale() == 'ar' ?$newsbutton[1]->articles_address_ar
+                                            :$newsbutton[1]->articles_address_en}}
                                         </span>
                                     </div>
                                 </li>
@@ -308,12 +345,12 @@
                         <p class="text-center">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             {{app()->getLocale() == 'ar' ? "حقوق الطبع والنشر ©" : "copyright ©"}}
-                              
+
                             <script>
                                 document.write(new Date().getFullYear());
                             </script>
-                            {{app()->getLocale() == 'ar' ? 'جميع الحقوق محفوظة' : 'All Rigths Reserved'}} 
-                             
+                            {{app()->getLocale() == 'ar' ? 'جميع الحقوق محفوظة' : 'All Rigths Reserved'}}
+
                             <!-- &copy;<script>document.write(new Date().getFullYear());</script>
                                         All rights reserved -->
                             </a>
