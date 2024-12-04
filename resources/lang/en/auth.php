@@ -21,5 +21,8 @@ return [
     "Email Address"=> "Email Address",
     "Password"=> "Password",
     "Confirm Password"=> "Confirm Password",
+    "You are logged in!"=>"You are logged in!",
+    "Dashboard"=>"Dashboard",
+    "logout"=>"logout"
 
 ];

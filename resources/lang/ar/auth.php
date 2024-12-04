@@ -31,5 +31,8 @@ return [
     "Email Address"=> "البريد الالكتروني",
     "Password"=> "كلمة المرور",
     "Confirm Password"=> "تأكيد كلمة المرور",
+    "You are logged in!"=>"تم تسجيل الدخول بنجاح",
+    "Dashboard"=>"لوحة التحكم",
+    "logout"=>"تسجيل الخروج"
 
 ];

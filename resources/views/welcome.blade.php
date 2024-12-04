@@ -160,7 +160,7 @@
                                 {{ app()->getLocale() == 'ar' ? Str::limit($item->articles_subject_ar, 40) :
                                 Str::limit($item->articles_subject_en, 40)}}
                             </p>
-                            <a class="read_more" href="cause_details.html">
+                            <a class="read_more" href="{{ LaravelLocalization::localizeUrl('/cause_details/' . $item->id) }}">  
                                 {{ app()->getLocale() == 'ar' ? "المزيد" : "more"}}
                             </a>
                         </div>

@@ -24,33 +24,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
-    /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP 
-
-      $sliders = Department::find(1)->articles->where('articles_isactive', 'active');
-        $aboutUs = Department::find(2)->articles->where('articles_isactive', 'active');
-        $servicesDep = Department::find(3);
-        $services= Department::find(3)->articles->where('articles_isactive', 'active')->take(6);
-
-        $galleryDep = Department::find(4);
-        $gallery= Department::find(4)->articles->where('articles_isactive', 'active')->take(6);
-        $setting = Setting::find(1);
-
-       
-      
-        $flag='home';
-
-        return view('welcome',[
-            "sliders"=>$sliders,
-            "aboutUs"=>$aboutUs,
-            "servicesDep"=>$servicesDep,
-            "services"=>$services,
-            "galleryDep"=>$galleryDep,
-            "gallery"=>$gallery,
-            "setting"=>$setting,
-            "flag"=>$flag
-            ]);
-    
-    **/
+  
 
     Route::get('/', function () {
         $banner = Article::find(1);
@@ -132,18 +106,21 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         ]);
     });
 
-    Route::get('/services', function () {
+    Route::get('/cause_details/{id}', function ($id) {
+       // return $id;
         //$service=Article::find($id);
         $setting = Setting::find(1);
-        $servicesDep = Department::find(3);
-        $services= Department::find(3)->articles->where('articles_isactive', 'active');
-        $flag='services';
+        $settingArticle= Article::find(14);
+        $newsbutton=Department::find(7)->articles->where('articles_isactive', 'active')->take(2);
+        $helpDep = Department::find(2);
+        $item=Article::find($id);
 
-        return view('services', [
-            "flag"=>$flag,
-            "servicesDep"=>$servicesDep,
-            "services"=>$services,
-            "setting" => $setting
+        return view('cause_details', [
+            "settingArticle"=>$settingArticle,
+            "newsbutton"=>$newsbutton,
+            "setting" => $setting,
+            "item"=>$item,
+            "helpDep"=>$helpDep
         ]);
     });
 

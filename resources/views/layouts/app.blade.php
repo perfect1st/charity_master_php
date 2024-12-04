@@ -21,31 +21,31 @@
     @if (app()->getLocale() == 'ar')
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="{{asset("css_ar/bootstrap.min.css")}}">
-    <link rel="stylesheet" href="{{asset("css_ar/owl.carousel.min.css")}}">
-    <link rel="stylesheet" href="{{asset("css_ar/magnific-popup.css")}}">
-    <link rel="stylesheet" href="{{asset("css_ar/font-awesome.min.css")}}">
-    <link rel="stylesheet" href="{{asset("css_ar/themify-icons.css")}}">
-    <link rel="stylesheet" href="{{asset("css_ar/nice-select.css")}}">
-    <link rel="stylesheet" href="{{asset("css_ar/flaticon.css")}}">
-    <link rel="stylesheet" href="{{asset("css_ar/gijgo.css")}}">
-    <link rel="stylesheet" href="{{asset("css_ar/animate.css")}}">
-    <link rel="stylesheet" href="{{asset("css_ar/slicknav.css")}}">
-    <link rel="stylesheet" href="{{asset("css_ar/style.css")}}">
+    <link rel="stylesheet" href="{{asset(" css_ar/bootstrap.min.css")}}">
+    <link rel="stylesheet" href="{{asset(" css_ar/owl.carousel.min.css")}}">
+    <link rel="stylesheet" href="{{asset(" css_ar/magnific-popup.css")}}">
+    <link rel="stylesheet" href="{{asset(" css_ar/font-awesome.min.css")}}">
+    <link rel="stylesheet" href="{{asset(" css_ar/themify-icons.css")}}">
+    <link rel="stylesheet" href="{{asset(" css_ar/nice-select.css")}}">
+    <link rel="stylesheet" href="{{asset(" css_ar/flaticon.css")}}">
+    <link rel="stylesheet" href="{{asset(" css_ar/gijgo.css")}}">
+    <link rel="stylesheet" href="{{asset(" css_ar/animate.css")}}">
+    <link rel="stylesheet" href="{{asset(" css_ar/slicknav.css")}}">
+    <link rel="stylesheet" href="{{asset(" css_ar/style.css")}}">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 
     @else
-    <link rel="stylesheet" href="{{asset("css/bootstrap.min.css")}}">
-    <link rel="stylesheet" href="{{asset("css/owl.carousel.min.css")}}">
-    <link rel="stylesheet" href="{{asset("css/magnific-popup.css")}}">
-    <link rel="stylesheet" href="{{asset("css/font-awesome.min.css")}}">
-    <link rel="stylesheet" href="{{asset("css/themify-icons.css")}}">
-    <link rel="stylesheet" href="{{asset("css/nice-select.css")}}">
-    <link rel="stylesheet" href="{{asset("css/flaticon.css")}}">
-    <link rel="stylesheet" href="{{asset("css/gijgo.css")}}">
-    <link rel="stylesheet" href="{{asset("css/animate.css")}}">
-    <link rel="stylesheet" href="{{asset("css/slicknav.css")}}">
-    <link rel="stylesheet" href="{{asset("css/style.css")}}">
+    <link rel="stylesheet" href="{{asset(" css/bootstrap.min.css")}}">
+    <link rel="stylesheet" href="{{asset(" css/owl.carousel.min.css")}}">
+    <link rel="stylesheet" href="{{asset(" css/magnific-popup.css")}}">
+    <link rel="stylesheet" href="{{asset(" css/font-awesome.min.css")}}">
+    <link rel="stylesheet" href="{{asset(" css/themify-icons.css")}}">
+    <link rel="stylesheet" href="{{asset(" css/nice-select.css")}}">
+    <link rel="stylesheet" href="{{asset(" css/flaticon.css")}}">
+    <link rel="stylesheet" href="{{asset(" css/gijgo.css")}}">
+    <link rel="stylesheet" href="{{asset(" css/animate.css")}}">
+    <link rel="stylesheet" href="{{asset(" css/slicknav.css")}}">
+    <link rel="stylesheet" href="{{asset(" css/style.css")}}">
 
     @endif
 
@@ -123,50 +123,56 @@
                                                 <li><a href="single-blog.html">single-blog</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="#">الصفحات <i class="ti-angle-down"></i></a>
+                                        {{-- <li><a href="#">الصفحات <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="elements.html">elements</a></li>
                                                 <li><a href="Cause.html">Cause</a></li>
                                             </ul>
-                                        </li>
+                                        </li> --}}
                                         <li><a href="contact.html">
                                                 {{app()->getLocale() == 'ar' ? "تواصل معنا" :" contact us"}}
                                             </a></li>
 
-                                            @auth
-                                            <a href="{{ url('/dashboard') }}" class="btn btn-primary me-2">Go to Dashboard</a>
-                                            <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                                                @csrf
-                                                <button type="submit" class="btn btn-danger">Logout</button>
-                                            </form>
-                                            @else
+                                        @auth
+                                        <li>
+                                            <a href="{{ url('dashboard_user') }}" class="btn btn-primary me-2">
+                                                @lang('auth.Dashboard')
+                                            </a>
+                                        </li>
 
-                                            <li><a href="{{ route('login') }}">
+                                        <li>
+                                            <a>
+                                                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="btn btn-danger">@lang("auth.logout")</button>
+                                                </form>
+                                            </a>
+                                        </li>
+
+                                        @else
+
+                                        <li><a href="{{ route('login') }}">
                                                 {{app()->getLocale() == 'ar' ? "تسجيل الدخول" : "Login"}} </a>
 
                                             </a></li>
 
-                                            <li><a href="{{ route('register') }}">
-                                                {{app()->getLocale() == 'ar' ? "انشاء حساب" : "Register"}}     
+                                        <li><a href="{{ route('register') }}">
+                                                {{app()->getLocale() == 'ar' ? "انشاء حساب" : "Register"}}
                                             </a>
 
                                             </a></li>
-        
-                                            
-        
-                                            {{-- <div class="book_btn d-none d-lg-block">
-                                                <a data-scroll-nav='1' href="{{ route('register') }}">
-                                                    {{app()->getLocale() == 'ar' ? "انشاء حساب" : "Register"}} </a>
-                                            </div> --}}
-        
-                                            @endauth
-        
+
+
+
+                                        @endauth
+
                                     </ul>
                                 </nav>
                                 <div class="Appointment">
 
-                                    
-                                   
+
+
                                     <div class="book_btn d-none d-lg-block">
                                         <a data-scroll-nav='1' href="#">
                                             {{app()->getLocale() == 'ar' ? "تبرع الان" : "Donate now"}} </a>
@@ -367,32 +373,32 @@
     <!-- link that opens popup -->
 
     <!-- JS here -->
-    <script src="{{asset("js/vendor/modernizr-3.5.0.min.js")}}"></script>
-    <script src="{{asset("js/vendor/jquery-1.12.4.min.js")}}"></script>
-    <script src="{{asset("js/popper.min.js")}}"></script>
-    <script src="{{asset("js/bootstrap.min.js")}}"></script>
-    <script src="{{asset("js/owl.carousel.min.js")}}"></script>
-    <script src="{{asset("js/isotope.pkgd.min.js")}}"></script>
-    <script src="{{asset("js/ajax-form.js")}}"></script>
-    <script src="{{asset("js/waypoints.min.js")}}"></script>
-    <script src="{{asset("js/jquery.counterup.min.js")}}"></script>
-    <script src="{{asset("js/imagesloaded.pkgd.min.js")}}"></script>
-    <script src="{{asset("js/scrollIt.js")}}"></script>
-    <script src="{{asset("js/jquery.scrollUp.min.js")}}"></script>
-    <script src="{{asset("js/wow.min.js")}}"></script>
-    <script src="{{asset("js/nice-select.min.js")}}"></script>
-    <script src="{{asset("js/jquery.slicknav.min.js")}}"></script>
-    <script src="{{asset("js/jquery.magnific-popup.min.js")}}"></script>
-    <script src="{{asset("js/plugins.js")}}"></script>
-    <script src="{{asset("js/gijgo.min.js")}}"></script>
+    <script src="{{asset(" js/vendor/modernizr-3.5.0.min.js")}}"></script>
+    <script src="{{asset(" js/vendor/jquery-1.12.4.min.js")}}"></script>
+    <script src="{{asset(" js/popper.min.js")}}"></script>
+    <script src="{{asset(" js/bootstrap.min.js")}}"></script>
+    <script src="{{asset(" js/owl.carousel.min.js")}}"></script>
+    <script src="{{asset(" js/isotope.pkgd.min.js")}}"></script>
+    <script src="{{asset(" js/ajax-form.js")}}"></script>
+    <script src="{{asset(" js/waypoints.min.js")}}"></script>
+    <script src="{{asset(" js/jquery.counterup.min.js")}}"></script>
+    <script src="{{asset(" js/imagesloaded.pkgd.min.js")}}"></script>
+    <script src="{{asset(" js/scrollIt.js")}}"></script>
+    <script src="{{asset(" js/jquery.scrollUp.min.js")}}"></script>
+    <script src="{{asset(" js/wow.min.js")}}"></script>
+    <script src="{{asset(" js/nice-select.min.js")}}"></script>
+    <script src="{{asset(" js/jquery.slicknav.min.js")}}"></script>
+    <script src="{{asset(" js/jquery.magnific-popup.min.js")}}"></script>
+    <script src="{{asset(" js/plugins.js")}}"></script>
+    <script src="{{asset(" js/gijgo.min.js")}}"></script>
     <!--contact js-->
-    <script src="{{asset("js/contact.js")}}"></script>
-    <script src="{{asset("js/jquery.ajaxchimp.min.js")}}"></script>
-    <script src="{{asset("js/jquery.form.js")}}"></script>
-    <script src="{{asset("js/jquery.validate.min.js")}}"></script>
-    <script src="{{asset("js/mail-script.js")}}"></script>
+    <script src="{{asset(" js/contact.js")}}"></script>
+    <script src="{{asset(" js/jquery.ajaxchimp.min.js")}}"></script>
+    <script src="{{asset(" js/jquery.form.js")}}"></script>
+    <script src="{{asset(" js/jquery.validate.min.js")}}"></script>
+    <script src="{{asset(" js/mail-script.js")}}"></script>
 
-    <script src="{{asset("js/main.js")}}"></script>
+    <script src="{{asset(" js/main.js")}}"></script>
 </body>
 
 
