@@ -44,6 +44,10 @@
                                 </span>
                                 @enderror
                             </div>
+
+                            <div class="col-md-6 my-3">
+                                    <a href="{{ route('register') }}" style="text-decoration: underline;"> @lang('auth.dont have account') </a>
+                            </div>
                         </div>
 
                         {{-- <div class="row mb-3">

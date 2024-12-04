@@ -5379,7 +5379,8 @@ tbody.collapse.show {
     display: flex;
     -webkit-box-align: start;
     -ms-flex-align: start;
-    align-items: flex-start
+    align-items: flex-start;
+    gap:6px;
 }
 
 .media-body {

@@ -33,6 +33,11 @@ return [
     "Confirm Password"=> "تأكيد كلمة المرور",
     "You are logged in!"=>"تم تسجيل الدخول بنجاح",
     "Dashboard"=>"لوحة التحكم",
-    "logout"=>"تسجيل الخروج"
+    "logout"=>"تسجيل الخروج",
+    "Enter Subject"=>"ادخل الموضوع",
+    "Enter Message"=>"ادخل الرسالة",
+    "Enter your name"=>"ادخل الاسم",
+    "dont have account"=>"ليس لديك حساب ؟",
+    "donates"=>"التبرعات"
 
 ];

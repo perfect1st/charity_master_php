@@ -124,32 +124,35 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         ]);
     });
 
-    Route::get('/contact', function () {
+    Route::get('/contactUs', function () {
         //$service=Article::find($id);
         $setting = Setting::find(1);
-        $flag='contact';
+        $settingArticle= Article::find(14);
+        $newsbutton=Department::find(7)->articles->where('articles_isactive', 'active')->take(2);
+        
 
 
-        return view('contact', [
-            "flag"=>$flag,
-            "setting" => $setting
+        return view('contactUs', [
+            "settingArticle"=>$settingArticle,
+            "setting" => $setting,
+            "newsbutton"=>$newsbutton
         ]);
     });
 
-    Route::get('/service/{id}',function($id){
-        $article=Article::find($id);
+    Route::get('/donates',function(){
         $setting = Setting::find(1);
-        $flag='contact';
+        $settingArticle= Article::find(14);
+        $newsbutton=Department::find(7)->articles->where('articles_isactive', 'active')->take(2);
 
        // return 'gggggggggg';
 
-        return view('service', [
-            "flag"=>$flag,
+        return view('donates', [
+            "settingArticle"=>$settingArticle,
             "setting" => $setting,
-            "article"=>$article
+            "newsbutton"=>$newsbutton
         ]);
 
-    });
+    })->middleware(['auth']);
 
     Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::resource('/department', DepartmentController::class);

@@ -23,6 +23,12 @@ return [
     "Confirm Password"=> "Confirm Password",
     "You are logged in!"=>"You are logged in!",
     "Dashboard"=>"Dashboard",
-    "logout"=>"logout"
+    "logout"=>"logout",
+    "Enter Subject"=>"Enter Subject",
+    "Enter Message"=>"Enter Message",
+    "Enter your name"=>"Enter your name",
+    "dont have account"=>"Dont have account?",
+    "donates"=>"donates"
+
 
 ];
