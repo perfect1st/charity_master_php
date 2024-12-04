@@ -240,7 +240,7 @@
                             <span>
                                 {{ app()->getLocale() == 'ar' ? $item->articles_address_ar : $item->articles_address_en}}
                             </span>
-                            <a href="single-blog.html">
+                            <a href="">
                                 <h3>
                                     {{ app()->getLocale() == 'ar' ? $item->articles_title_ar : $item->articles_title_en}} 
                                 </h3>
@@ -248,7 +248,7 @@
                             <p>
                                 {{ app()->getLocale() == 'ar' ? $item->articles_subject_ar : $item->articles_subject_en}}
                             </p>
-                            <a class="read_more" href="single-blog.html">
+                            <a class="read_more" href="">
                                 {{ app()->getLocale() == 'ar' ? "المزيد" : "more"}}
                             </a>
                         </div>

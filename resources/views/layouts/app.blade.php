@@ -275,7 +275,7 @@
 
                         </div>
                     </div>
-                    <div class="col-xl-2 col-md-6 col-lg-2">
+                    {{-- <div class="col-xl-2 col-md-6 col-lg-2">
                         <div class="footer_widget">
                             <h3 class="footer_title">
                                 {{app()->getLocale() == 'ar' ? 'الخدمات' : 'Services'}}
@@ -289,7 +289,7 @@
                                 <li><a href="#"> الوظائف</a></li>
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget">
                             <h3 class="footer_title">
