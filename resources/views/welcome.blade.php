@@ -274,7 +274,8 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-lg-6">
-                <form action="#" class="donation_form">
+                <form action="{{ url('/pay') }}" method="POST" id="pay" class="donation_form">
+                    @csrf
                     <div class="row align-items-center">
                         <div class="col-md-4">
                             <div class="single_amount">
@@ -283,7 +284,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">$</span>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="40,200"
+                                        <input id="number_donate" type="text" class="form-control" placeholder="40,200"
                                             aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
                                 </div>
@@ -299,15 +300,15 @@
                                         </h4>
                                     </div>
                                     <div class="single_doonate">
-                                        <input type="radio" id="blns_1" name="radio-group" checked>
+                                        <input type="radio" id="blns_1" name="radio-group" value="10" >
                                         <label for="blns_1">10</label>
                                     </div>
                                     <div class="single_doonate">
-                                        <input type="radio" id="blns_2" name="radio-group" checked>
+                                        <input type="radio" id="blns_2" name="radio-group" value="30">
                                         <label for="blns_2">30</label>
                                     </div>
                                     <div class="single_doonate">
-                                        <input type="radio" id="Other" name="radio-group" checked>
+                                        <input type="radio" id="Other" name="radio-group">
                                         <label for="Other">
                                             {{app()->getLocale() == 'ar' ? "مبلغ اخر :" : "another"}}
                                         </label>
@@ -321,10 +322,13 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="donate_now_btn text-center">
-                    <a href="#" class="boxed-btn4">
+                <div class="donate_now_btn text-center d-flex gap-2 justify-content-center" style="gap: 20px">
+                    
+                    <button  onclick="pay(event)"  class="boxed-btn4 d-inline">
                         {{app()->getLocale() == 'ar' ? "تبرع الان" : "Donate now"}}
-                    </a>
+                    </button>
+                    <div class="loader" style="display: hidden"></div>
+                   
                 </div>
             </div>
 

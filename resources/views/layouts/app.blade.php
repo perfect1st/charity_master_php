@@ -51,6 +51,30 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
 
+    <style>
+        .loader {
+          border: 16px solid #f3f3f3;
+          border-radius: 50%;
+          border-top: 16px solid #3498db;
+          width: 50px;
+          height: 50px;
+          -webkit-animation: spin 2s linear infinite; /* Safari */
+          animation: spin 2s linear infinite;
+          display: none;
+        }
+        
+        /* Safari */
+        @-webkit-keyframes spin {
+          0% { -webkit-transform: rotate(0deg); }
+          100% { -webkit-transform: rotate(360deg); }
+        }
+        
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        </style>
+
 </head>
 
 <body>
@@ -419,6 +443,46 @@
     <script src="{{asset("js/main.js")}}"></script>
 </body>
 
+<script>
+    function pay(event) {
 
+        const amount=document.getElementById('number_donate');
+
+
+if(amount.value){
+    document.getElementById('Other').value=amount.value;
+    document.getElementById('Other').checked=true;
+}
+
+
+
+
+//console.log('amount_value',amount_value);
+
+        const amount_value = document.querySelector('input[name="radio-group"]:checked')?.value;
+        if(amount_value==undefined) return alert('من فضلك ادخل مبلغ التبرع');
+
+        event.preventDefault();
+        console.log(event.target);
+        const button=event.target;
+
+         button.disabled=true;
+        button.style.visibility="hidden";
+
+        console.log(button);
+
+        const loader=document.getElementsByClassName('loader');
+
+        loader[0].style.display="block";
+
+        console.log(loader[0]);
+
+      
+        console.log('xxxxxxxxxxxxxxxxxxxx');
+        const form=document.querySelector('#pay');
+        console.log(form);
+        form.submit();
+    }
+</script>
 
 </html>

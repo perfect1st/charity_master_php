@@ -11,6 +11,8 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,7 +65,104 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
       
     });
 
-   
+   Route::post('/pay',function(Request $request){
+   // if(!$request["value"]) return redirect->back();
+  // return $request;
+
+   // return $request["radio-group"];
+
+   $user = Auth::user();
+
+   return $user;
+
+    $url = 'https://accept.paymob.com/api/auth/tokens';
+
+    $data = [
+        'api_key' => 'ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SndjbTltYVd4bFgzQnJJam95TWpNek16RXNJbU5zWVhOeklqb2lUV1Z5WTJoaGJuUWlMQ0p1WVcxbElqb2lhVzVwZEdsaGJDSjkuV3RVYjZHdkxRdXlCRG1mQjN1S0RIVTRGSklHMjJYSTNnellQRXA1czlhaC0wbkE4V0JJZEtBaDRvOS10Vkw4NmluaEVyblhSNkdhVVJPcXM5R21rckE='
+        
+    ]; // Replace with your request data
+
+    try {
+        $response = Http::post($url, $data);
+
+       // $status = $response->status(); // HTTP status code
+       // $responseBody = $response->body(); // Raw response body
+        $responseJson = $response->json(); // JSON-decoded response (if applicable)
+
+        $token=$responseJson['token'];
+
+        $url2="https://accept.paymob.com/api/ecommerce/orders";
+
+        $totalPrice=$request["radio-group"] * 100;
+
+        $integrationID="2319784";
+
+        $data2=[
+            "auth_token" => $token,
+          "delivery_needed" => "false",
+          "amount_cents" => $totalPrice,
+          "currency" => "EGP",
+          "items" => []
+            ];
+
+            $response2 = Http::post($url2, $data2);
+
+            $responseJson2 = $response2->json();
+
+            $orderID=$responseJson2['id'];
+
+          //  return $orderID;
+
+            $url3="https://accept.paymob.com/api/acceptance/payment_keys";
+
+            $billing_data_array = [
+    'apartment' => 'Na',
+    'email' =>$user->email,
+    'floor' => 'Na',
+    'first_name' => $user->name,
+    'street' => 'Na',
+    'building' => 'Na',
+    'phone_number' => "123456789",
+    'postal_code' => 'Na',
+    'city' => 'Na',
+    'country' => 'Na',
+    'last_name' => $user->name,
+    'state' => 'Na',
+];
+
+            $billing_data = (object) $billing_data_array;
+
+            $data3=[
+                "auth_token" => $token,
+              "amount_cents" => $totalPrice,
+              "expiration" => "3600",
+              "order_id"=> $orderID,
+              "currency"=> "EGP", 
+              "integration_id"=> $integrationID,
+              "billing_data" => $billing_data
+                ];
+            
+                $response3 = Http::post($url3, $data3);
+
+            $responseJson3 = $response3->json();
+
+            $orderToken=$responseJson3['token'];
+
+            $payURL = "https://accept.paymobsolutions.com/api/acceptance/iframes/414769?payment_token={$orderToken}";
+
+            return redirect()->away($payURL);
+
+         
+
+    } catch (\Exception $e) {
+        // Handle exceptions
+        return response()->json([
+            'status' => 'error',
+            'message' => $e->getMessage(),
+        ], 500);
+    }
+
+   })->middleware(['auth']);
 
     //serviceDetails
     Route::get('/aboutus', function () {
