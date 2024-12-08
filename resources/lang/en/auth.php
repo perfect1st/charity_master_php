@@ -28,7 +28,6 @@ return [
     "Enter Message"=>"Enter Message",
     "Enter your name"=>"Enter your name",
     "dont have account"=>"Dont have account?",
-    "donates"=>"donates"
-
-
+    "donates"=>"donates",
+    "mobile"=>"mobile"
 ];

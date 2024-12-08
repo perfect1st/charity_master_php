@@ -38,6 +38,6 @@ return [
     "Enter Message"=>"ادخل الرسالة",
     "Enter your name"=>"ادخل الاسم",
     "dont have account"=>"ليس لديك حساب ؟",
-    "donates"=>"التبرعات"
-
+    "donates"=>"التبرعات",
+    "mobile"=>"رقم الهاتف"
 ];

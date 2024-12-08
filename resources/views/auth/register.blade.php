@@ -46,6 +46,14 @@
                         </div>
 
                         <div class="row mb-3">
+                            <label for="email" class="col-md-4 col-form-label text-md-end"> @lang('auth.mobile')</label>
+
+                            <div class="col-md-6">
+                                <input id="mobile" type="text" class="form-control" name="mobile"  required>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end"> @lang('auth.Password')</label>
 
                             <div class="col-md-6">
