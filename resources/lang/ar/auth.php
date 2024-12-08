@@ -39,5 +39,7 @@ return [
     "Enter your name"=>"ادخل الاسم",
     "dont have account"=>"ليس لديك حساب ؟",
     "donates"=>"التبرعات",
-    "mobile"=>"رقم الهاتف"
+    "mobile"=>"رقم الهاتف",
+    "success"=>"تم الدفع بنجاح ",
+    "failed"=>"فشل في عملية الدفع"
 ];

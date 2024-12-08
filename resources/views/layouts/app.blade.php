@@ -160,7 +160,7 @@
 
                                             @auth
                                             {{-- <li>
-                                            <a href="{{ url('dashboard_user') }}" class="btn btn-primary me-2">
+                                            <a href="{{ url('userSetting') }}" class="btn btn-primary me-2">
                                                 @lang('auth.Dashboard')
                                             </a>
                                         </li> --}}
@@ -168,6 +168,7 @@
                                             @lang('auth.Dashboard')
                                                 <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
+                                                <li><a href="{{ LaravelLocalization::localizeUrl('/userSetting') }}">@lang('auth.oo')</a></li>
                                                 <li><a href="{{ LaravelLocalization::localizeUrl('/donates') }}">@lang('auth.donates')</a></li>
                                                 <li>
                                                     <a>

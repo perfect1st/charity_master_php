@@ -29,5 +29,7 @@ return [
     "Enter your name"=>"Enter your name",
     "dont have account"=>"Dont have account?",
     "donates"=>"donates",
-    "mobile"=>"mobile"
+    "mobile"=>"mobile",
+    "success"=>"payment successfully!",
+    "failed"=>"payment failed!"
 ];

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Article;
 use App\Models\Department;
 use App\Models\Setting;
+use App\Models\User;
+
 
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ArticleController;
@@ -66,14 +68,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     });
 
    Route::post('/pay',function(Request $request){
-   // if(!$request["value"]) return redirect->back();
-  // return $request;
-
-   // return $request["radio-group"];
 
    $user = Auth::user();
 
-   return $user;
+   // return $user;
 
     $url = 'https://accept.paymob.com/api/auth/tokens';
 
@@ -156,10 +154,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
     } catch (\Exception $e) {
         // Handle exceptions
-        return response()->json([
-            'status' => 'error',
-            'message' => $e->getMessage(),
-        ], 500);
     }
 
    })->middleware(['auth']);
@@ -252,6 +246,47 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         ]);
 
     })->middleware(['auth']);
+
+    Route::get('/checkout',function(Request $request){
+        $setting = Setting::find(1);
+        $settingArticle= Article::find(14);
+        $newsbutton=Department::find(7)->articles->where('articles_isactive', 'active')->take(2);
+
+        $success = $request->query('success'); 
+
+      //  return $name;
+        if($success==true){
+
+        }
+
+
+        return view('checkout',[
+            "settingArticle"=>$settingArticle,
+            "setting" => $setting,
+            "newsbutton"=>$newsbutton
+        ]);
+    });
+
+    Route::get('/userSetting',function(){
+       // return 'vvvvvvvvvvvvv';
+
+       $usersession = Auth::user();
+
+        $setting = Setting::find(1);
+        $settingArticle= Article::find(14);
+        $newsbutton=Department::find(7)->articles->where('articles_isactive', 'active')->take(2);
+        $user=User::find($usersession->id);
+
+       // return $user;
+
+        return view('userSetting',[
+            "settingArticle"=>$settingArticle,
+            "setting" => $setting,
+            "newsbutton"=>$newsbutton,
+            "user"=>$user
+        ]);
+
+   });
 
     Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::resource('/department', DepartmentController::class);
