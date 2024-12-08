@@ -265,7 +265,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             "setting" => $setting,
             "newsbutton"=>$newsbutton
         ]);
-    });
+    })->middleware(['auth']);
 
     Route::get('/userSetting',function(){
        // return 'vvvvvvvvvvvvv';
@@ -286,7 +286,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             "user"=>$user
         ]);
 
-   });
+   })->middleware(['auth']);
+
+   Route::post('editUserSetting',function(){
+    return "gggggggggg";
+
+   })->middleware(['auth']);
 
     Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::resource('/department', DepartmentController::class);
