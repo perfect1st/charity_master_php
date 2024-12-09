@@ -1,7 +1,26 @@
 @extends('layouts.app')
 @section('content')
 
+
+
 <div class="container my-5 right">
+
+    @if(session('fondEmail'))
+    <div class="alert alert-danger">
+        <div class="text-center">
+            {{ session('fondEmail')}}
+        </div>
+    </div>
+    @endif
+
+    @if(session('success'))
+    <div class="alert alert-success">
+        <div class="text-center">
+            {{ session('success')}}
+        </div>
+    </div>
+    @endif
+
     <div class="row justify-content-center p-5">
         <div class="col-md-8">
             <div class="card">
@@ -77,7 +96,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-warning">
+                                <button onclick="validate(event)" type="submit" class="btn btn-warning">
                                     {{  app()->getLocale() == 'ar' ? 'تعديل' : 'Edit' }}
                                 </button>
                             </div>
@@ -89,3 +108,24 @@
     </div>
 </div>
 @endsection
+
+<script>
+    function validate(event) {
+       
+        // password-confirm
+        let password=document.querySelector('#password').value;
+
+        let passwordConfirm=document.querySelector('#password-confirm').value;
+
+        if(password!=''){
+                if(password!=passwordConfirm){
+                     event.preventDefault();
+                    return alert('كلمة المرور يجب ان تساوي تأكيد كلمة المرور');
+                }
+        }
+
+        // console.log(password,passwordConfirm);
+
+       // console.log('ccccccccccccccccccc');
+    }
+</script>

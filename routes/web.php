@@ -288,8 +288,49 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
    })->middleware(['auth']);
 
-   Route::post('editUserSetting',function(){
-    return "gggggggggg";
+   Route::post('editUserSetting',function(Request $request){
+   // return $request->name;
+   if($request->email !=$request->old_email){
+        $foundEmail=User::where('email',$request->email)->first();
+        if($foundEmail){
+            // Store the object in the session
+    session()->flash('fondEmail', 'هذا الاميل موجود بالفعل');
+    // Redirect back to the form
+    return redirect()->back();
+        } 
+   }
+
+   if($request->mobile !=$request->old_mobile){
+            $foundEmail=User::where('mobile',$request->mobile)->first();
+            if($foundEmail){
+            // Store the object in the session
+    session()->flash('fondEmail', 'هذا الهاتف موجود بالفعل');
+    // Redirect back to the form
+    return redirect()->back();
+        } 
+
+        }
+
+        $update = array();
+        $update['name'] = $request->name;
+        $update['email'] = $request->email;
+        $update['mobile'] = $request->mobile;
+
+        if($request->password){
+            $update['password'] = bcrypt($request->password);
+        }
+
+        $loggedUser = Auth::user();
+
+        User::where('id', $loggedUser->id)->update(
+            $update
+        );
+
+        session()->flash('success', 'تم التعديل بنجاح');
+    // Redirect back to the form
+        return redirect()->back();
+        // 'password' => bcrypt($request->password),
+      
 
    })->middleware(['auth']);
 

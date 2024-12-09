@@ -31,5 +31,6 @@ return [
     "donates"=>"donates",
     "mobile"=>"mobile",
     "success"=>"payment successfully!",
-    "failed"=>"payment failed!"
+    "failed"=>"payment failed!",
+    "profile"=>"Profile"
 ];
