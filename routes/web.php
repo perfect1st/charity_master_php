@@ -5,6 +5,7 @@ use App\Models\Article;
 use App\Models\Department;
 use App\Models\Setting;
 use App\Models\User;
+use App\Models\Donate;
 
 
 use App\Http\Controllers\DepartmentController;
@@ -15,6 +16,8 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,8 +72,14 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
    Route::post('/pay',function(Request $request){
 
-   $user = Auth::user();
+   $usersession = Auth::user();
 
+   if($request->articleID){
+    Session::put('articleID', $request->articleID);
+   }
+   
+
+   $user=User::find($usersession->id);
    // return $user;
 
     $url = 'https://accept.paymob.com/api/auth/tokens';
@@ -144,6 +153,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
             $responseJson3 = $response3->json();
 
+          //  return $responseJson3;
+
             $orderToken=$responseJson3['token'];
 
             $payURL = "https://accept.paymobsolutions.com/api/acceptance/iframes/414769?payment_token={$orderToken}";
@@ -154,9 +165,63 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
     } catch (\Exception $e) {
         // Handle exceptions
+       // return $e;
+       session()->flash('error', 'حدث خطأ اثناء الدفع حاول مرة اخري');
+        return redirect()->back();
     }
 
    })->middleware(['auth']);
+
+   Route::get('/checkout',function(Request $request){
+    
+        $setting = Setting::find(1);
+        $settingArticle= Article::find(14);
+        $newsbutton=Department::find(7)->articles->where('articles_isactive', 'active')->take(2);
+
+        $success = $request->query('success'); 
+
+        $usersession = Auth::user();
+
+      //  return $name;
+        if($success==true){
+            
+            $newDonate=Donate::create([]);
+
+            if (Session::has('articleID')) {
+                $articleID = Session::get('articleID');
+                $newDonate->articleID=$articleID;      
+
+                $articleID = Session::get('articleID');
+                $article=Article::find($articleID);
+                $total=$article->articles_subject_ar2+($request->query('amount_cents')/100);
+                $article->articles_subject_ar2=$total;
+                $precentage=($total/$article->articles_address_ar)*100;
+                $article->articles_keyword=$precentage;
+
+                $article->save();
+                Session::forget('articleID');
+            }
+            else{
+                $newDonate->notes='تبرع عام';
+            }
+
+            $newDonate->transactionID=$request->query('id');
+            $newDonate->amount=$request->query('amount_cents')/100;
+            $newDonate->userID=$usersession->id;
+           //  $article->articles_image2=array_key_exists(1, $x) && $x[1] ? $x[1]: null;
+            // $article->articles_image3=array_key_exists(2, $x) && $x[2] ? $x[2]: null;
+            // $article->articles_image4=array_key_exists(3, $x) && $x[3] ? $x[3]: null;
+             $newDonate->save();
+            // return $newDonate;
+        }
+
+
+        return view('checkout',[
+            "settingArticle"=>$settingArticle,
+            "setting" => $setting,
+            "newsbutton"=>$newsbutton
+        ]);
+    })->middleware(['auth']);
 
     //serviceDetails
     Route::get('/aboutus', function () {
@@ -233,6 +298,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     });
 
     Route::get('/donates',function(){
+
+        $user=Auth::user();
+
+        $donates = Donate::with('article')->where('userID', $user->id)->get();
         $setting = Setting::find(1);
         $settingArticle= Article::find(14);
         $newsbutton=Department::find(7)->articles->where('articles_isactive', 'active')->take(2);
@@ -242,30 +311,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         return view('donates', [
             "settingArticle"=>$settingArticle,
             "setting" => $setting,
-            "newsbutton"=>$newsbutton
+            "newsbutton"=>$newsbutton,
+            "donates"=>$donates
         ]);
 
     })->middleware(['auth']);
 
-    Route::get('/checkout',function(Request $request){
-        $setting = Setting::find(1);
-        $settingArticle= Article::find(14);
-        $newsbutton=Department::find(7)->articles->where('articles_isactive', 'active')->take(2);
-
-        $success = $request->query('success'); 
-
-      //  return $name;
-        if($success==true){
-
-        }
-
-
-        return view('checkout',[
-            "settingArticle"=>$settingArticle,
-            "setting" => $setting,
-            "newsbutton"=>$newsbutton
-        ]);
-    })->middleware(['auth']);
+   
 
     Route::get('/userSetting',function(){
        // return 'vvvvvvvvvvvvv';

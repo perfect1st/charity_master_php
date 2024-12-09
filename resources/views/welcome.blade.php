@@ -140,18 +140,21 @@
                                     <div class="progress-bar" role="progressbar" style="width: 30%;" aria-valuenow="30"
                                         aria-valuemin="0" aria-valuemax="100">
                                         <span class="progres_count">
-                                            {{$item->articles_keyword}}
+                                            {{$item->articles_keyword}} %
                                         </span>
                                     </div>
                                 </div>
                             </div>
                             <div class="balance d-flex justify-content-between align-items-center right">
                                 <span>
-                                    {{ app()->getLocale() == 'ar' ? $item->articles_address_ar :
-                                    $item->articles_address_en }}
+                                    {{ app()->getLocale() == 'ar' ? 'الهدف :' :
+                                    'Goal: '  }}
+                                    {{$item->articles_address_ar}} 
                                 </span>
-                                <span> {{ app()->getLocale() == 'ar' ? $item->articles_subject_ar2 :
-                                    $item->articles_subject_en2 }} </span>
+                                <span> {{ app()->getLocale() == 'ar' ? 'المجموع :' :
+                                    'sum :' }}
+                                    {{$item->articles_subject_ar2}}
+                                     </span>
                             </div>
                             <h4>
                                 {{ app()->getLocale() == 'ar' ? $item->articles_title_ar : $item->articles_title_en}}
@@ -232,7 +235,7 @@
             <div class="col-lg-12">
                 <div class="news_active owl-carousel">
                     @foreach ($news as $item)
-                    <div class="single__blog d-flex align-items-center right">
+                    <div class="single__blog d-flex align-items-center right" style="height: 424px;">
                         <div class="thum">
                             <img src="{{asset('articles/' . $item->articles_image)}}" alt>
                         </div>

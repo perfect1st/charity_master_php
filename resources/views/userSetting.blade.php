@@ -68,7 +68,7 @@
                             <div class="col-md-6">
                                 <input id="mobile" value="{{$user->mobile}}" type="text" class="form-control" name="mobile"  required>
 
-                                <input id="mobile" value="{{$user->mobile}}" type="text" class="form-control" name="old_mobile" style="display:none">
+                                <input  value="{{$user->mobile}}" type="text" class="form-control" name="old_mobile" style="display:none">
                             </div>
                         </div>
 
@@ -117,10 +117,15 @@
 
         let passwordConfirm=document.querySelector('#password-confirm').value;
 
+        let mobile=document.querySelector('#mobile').value;
+        if(mobile==''){
+            event.preventDefault();
+                    return alert('يجب ادخال رقم الهاتف');
+        }
         if(password!=''){
                 if(password!=passwordConfirm){
                      event.preventDefault();
-                    return alert('كلمة المرور يجب ان تساوي تأكيد كلمة المرور');
+                    return alert('كلمة المرور يجب ان مطابقة تأكيد كلمة المرور');
                 }
         }
 

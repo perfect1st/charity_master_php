@@ -1,35 +1,87 @@
 @extends('layouts.app')
 @section('content')
 
-<div style="margin: 10%">
-    <table class="table">
+<style>
+    .customTable{
+        margin: 10%;
+        max-height: 800px;
+    overflow: auto;
+    padding: 10px;
+    }
+</style>
+
+<div class="customTable" >
+    <table class="table right">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">
+                {{ app()->getLocale() == 'ar' ? 'المبلغ' : 'amount'}}    
+                </th>
+                <th scope="col">
+                    {{ app()->getLocale() == 'ar' ? 'رقم العميلة' : 'transactionID'}}  
+                </th>
+                <th scope="col">
+                  {{app()->getLocale() == 'ar' ? 'سبب التبرع' : 'cause'}}  
+                </th>
             </tr>
         </thead>
         <tbody>
+            @foreach ($donates as $item)
             <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <td>{{$item->amount}}</td>
+                <td>{{$item->transactionID}}</td>
+                <td>
+                    @if($item->articleID==null)
+                    {{$item->notes}}
+                    @else
+                    {{$item->article->articles_title_ar}}
+                    @endif
+                </td>
             </tr>
+            @endforeach
+
+            @foreach ($donates as $item)
             <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
+                <td>{{$item->amount}}</td>
+                <td>{{$item->transactionID}}</td>
+                <td>
+                    @if($item->articleID==null)
+                    {{$item->notes}}
+                    @else
+                    {{$item->article->articles_title_ar}}
+                    @endif
+                </td>
             </tr>
+            @endforeach
+
+            @foreach ($donates as $item)
             <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
+                <td>{{$item->amount}}</td>
+                <td>{{$item->transactionID}}</td>
+                <td>
+                    @if($item->articleID==null)
+                    {{$item->notes}}
+                    @else
+                    {{$item->article->articles_title_ar}}
+                    @endif
+                </td>
             </tr>
+            @endforeach
+
+            @foreach ($donates as $item)
+            <tr>
+                <td>{{$item->amount}}</td>
+                <td>{{$item->transactionID}}</td>
+                <td>
+                    @if($item->articleID==null)
+                    {{$item->notes}}
+                    @else
+                    {{$item->article->articles_title_ar}}
+                    @endif
+                </td>
+            </tr>
+            @endforeach
+           
         </tbody>
     </table>
     

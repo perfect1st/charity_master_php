@@ -78,7 +78,13 @@
 </head>
 
 <body>
-
+    @if(session('error'))
+    <div class="alert alert-danger">
+        <div class="text-center">
+            {{ session('error')}}
+        </div>
+    </div>
+    @endif
     <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
@@ -92,7 +98,7 @@
                         <div class="col-xl-6 col-md-12 col-lg-8">
                             <div class="short_contact_list">
                                 <ul>
-                                    <li><a href="#"> <i class="fa fa-phone"></i> +1
+                                    <li><a href="#"> <i class="fa fa-phone"></i>
                                             {{$setting->setting_sitetell1}}</a></li>
                                     <li><a href="#"> <i class="fa fa-envelope"></i>
                                             {{$setting->setting_site_email}}
@@ -168,7 +174,11 @@
                                             @lang('auth.Dashboard')
                                                 <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
+                                                @if(Auth::user()->rule_id == 1)
+                                                <li><a href="{{'ar/home'}}">@lang('auth.profile')</a></li>
+                                                @else
                                                 <li><a href="{{ LaravelLocalization::localizeUrl('/userSetting') }}">@lang('auth.profile')</a></li>
+                                                @endif
                                                 <li><a href="{{ LaravelLocalization::localizeUrl('/donates') }}">@lang('auth.donates')</a></li>
                                                 <li>
                                                     <a>
