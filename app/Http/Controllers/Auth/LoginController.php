@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
+
 class LoginController extends Controller
 {
     /*
