@@ -1,0 +1,3 @@
+dbname: noorxpir_charity
+dbuser: noorxpir_admin
+dbpass:	{eS[*Y{1YwEj
